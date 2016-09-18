@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  // Each cell is an object with properties row and column
+  // Each cell is an object with four properties: row, column, whether it is a mine, and whether it is hidden
   cells: [
     {row: 1, col: 1, isMine: false, hidden: true},
     {row: 1, col: 2, isMine: false, hidden: true},

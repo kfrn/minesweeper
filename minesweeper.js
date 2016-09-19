@@ -47,7 +47,6 @@ function startGame () {
   document.addEventListener("contextmenu", checkForWin);
 }
 
-
 // Object constructor for minesweeper squares
 function MineSq(row, col, isMine, isMarked, hidden) {
   this.row = row;
@@ -56,7 +55,6 @@ function MineSq(row, col, isMine, isMarked, hidden) {
   this.isMarked = isMarked;
   this.hidden = hidden;
 }
-
 
 // Create the minesweeper board
 function createboard(width, height) {
@@ -68,7 +66,8 @@ function createboard(width, height) {
     var col = 0;
     // Then go along each square in the row and create a newSq
     for (var j = 0; j < width; j++) {
-      newSq = new MineSq(row, col, false, false, true);
+      // Use randomize function to automatically set whether there is a mine there. (Currently 20% likelihood)
+      newSq = new MineSq(row, col, randomizeMines(), false, true);
       console.log(newSq);
       board.cells.push(newSq);
       col++;
@@ -77,7 +76,18 @@ function createboard(width, height) {
   }
 }
 
-
+// Function to generate random number and return true or false based on value
+function randomizeMines() {
+  // Get random number between 1 and 100
+  var randomNo = Math.floor((Math.random() * 100) + 1);
+  // Random number is 1-79 = no mine. 80 or over = mine
+  if (randomNo < 80) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
 
 // Define this function to look for a win condition:
 

@@ -4,20 +4,32 @@ document.addEventListener('DOMContentLoaded', startGame)
 var board = {
   // Each cell is an object with four properties: row, column, whether it is a mine, and whether it is hidden
   cells: [
-    {row: 0, col: 0, isMine: false, hidden: true},
-    {row: 0, col: 1, isMine: true, hidden: true},
-    {row: 0, col: 2, isMine: true, hidden: true},
-    {row: 1, col: 0, isMine: false, hidden: true},
-    {row: 1, col: 1, isMine: false, hidden: true},
-    {row: 1, col: 2, isMine: false, hidden: true},
-    {row: 2, col: 0, isMine: false, hidden: true},
-    {row: 2, col: 1, isMine: false, hidden: true},
-    {row: 2, col: 2, isMine: true, hidden: true}
+    // {row: 0, col: 0, isMine: false, hidden: true},
+    // {row: 0, col: 1, isMine: true, hidden: true},
+    // {row: 0, col: 2, isMine: true, hidden: true},
+    // {row: 1, col: 0, isMine: false, hidden: true},
+    // {row: 1, col: 1, isMine: false, hidden: true},
+    // {row: 1, col: 2, isMine: false, hidden: true},
+    // {row: 2, col: 0, isMine: false, hidden: true},
+    // {row: 2, col: 1, isMine: false, hidden: true},
+    // {row: 2, col: 2, isMine: true, hidden: true}
   ]
 };
 
 function startGame () {
 
+  // Get a number for the width/height of the board
+  var boardWidth = prompt("Set your board size! Enter a number between 3 and 6", "your number here");
+
+  // Re-prompt if a different number is provided
+  if (boardWidth < 3 || boardWidth > 6) {
+    boardWidth = prompt("Try a number between 3 and 6", "3, 4, 5, or 6");
+  }
+
+  // Call function to create board
+  createboard(boardWidth, boardWidth)
+
+  // To count surrounding mines
   // Loop through the contents of board.cells (i.e, each cell)
   for (var i = 0; i < board.cells.length; i++) {
     // Call countSurroundingMines once for each cell in board.cells
@@ -34,6 +46,38 @@ function startGame () {
   // Add another event listener that calls checkForWin when the right mouse button is clicked.
   document.addEventListener("contextmenu", checkForWin);
 }
+
+
+// Object constructor for minesweeper squares
+function MineSq(row, col, isMine, isMarked, hidden) {
+  this.row = row;
+  this.col = col;
+  this.isMine = isMine;
+  this.isMarked = isMarked;
+  this.hidden = hidden;
+}
+
+
+// Create the minesweeper board
+function createboard(width, height) {
+  // For each square, needs to be an object with row #, col #, isMine: true, hidden: true
+  // Initialize row at zero
+  var row = 0;
+  for (var i = 0; i < height; i++) {   // Iterate row by row
+    // Initialize col at zero
+    var col = 0;
+    // Then go along each square in the row and create a newSq
+    for (var j = 0; j < width; j++) {
+      newSq = new MineSq(row, col, false, false, true);
+      console.log(newSq);
+      board.cells.push(newSq);
+      col++;
+    }
+    row++;
+  }
+}
+
+
 
 // Define this function to look for a win condition:
 

@@ -55,5 +55,5 @@ function countSurroundingMines (cell) {
       count++;
     }
   }
-  return count++
+  return count;
 }

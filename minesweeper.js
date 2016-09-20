@@ -98,7 +98,9 @@ function checkForBomb(evt) {
   // Objective: if the particular cell that is clicked on is a mine,
   // audio.play();
 
+  // Get the index (position in the array) of the clicked cell
   var idx = getCellIndex(getRow(evt.target), getCol(evt.target))
+  // Set variable cell as that index within board.cells
   var cell = board.cells[idx]
 
   // Set the HTML audio element as the variable 'audio'

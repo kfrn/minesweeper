@@ -22,12 +22,16 @@ function startGame () {
   var boardWidth = prompt("Set your board size! Enter a number between 3 and 6");
 
   // Re-prompt if a different number is provided, or nothing at all
-  if (boardWidth < 3 || boardWidth > 6 || boardWidth === null) {
+  while (boardWidth < 3 || boardWidth > 6 || boardWidth === null) {
     boardWidth = prompt("Try a number between 3 and 6");
-  }
+  };
+
+  // if (boardWidth < 3 || boardWidth > 6 || boardWidth === null) {
+  //   boardWidth = prompt("Try a number between 3 and 6");
+  // }
 
   // Call function to create board
-  createboard(boardWidth, boardWidth)
+  createboard(boardWidth, boardWidth);
 
   // To count surrounding mines
   // Loop through the contents of board.cells (i.e, each cell)

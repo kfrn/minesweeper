@@ -45,10 +45,14 @@ function startGame () {
 
   // Add another event listener that calls checkForWin when the right mouse button is clicked.
   document.addEventListener("contextmenu", checkForWin);
+
+  // Check if bomb has been clicked on
+  document.addEventListener("click", checkForBomb)
 }
 
 // Object constructor for minesweeper squares
 function MineSq(row, col, isMine, isMarked, hidden) {
+  // Each square needs to be an object with row #, col #, isMine, isMarked, hidden
   this.row = row;
   this.col = col;
   this.isMine = isMine;
@@ -58,7 +62,6 @@ function MineSq(row, col, isMine, isMarked, hidden) {
 
 // Create the minesweeper board
 function createboard(width, height) {
-  // For each square, needs to be an object with row #, col #, isMine: true, hidden: true
   // Initialize row at zero
   var row = 0;
   for (var i = 0; i < height; i++) {   // Iterate row by row
@@ -67,6 +70,7 @@ function createboard(width, height) {
     // Then go along each square in the row and create a newSq
     for (var j = 0; j < width; j++) {
       // Use randomize function to automatically set whether there is a mine there. (Currently 20% likelihood)
+      // To begin with, nothing should be marked and everything should be hidden
       newSq = new MineSq(row, col, randomizeMines(), false, true);
       console.log(newSq);
       board.cells.push(newSq);
@@ -88,6 +92,25 @@ function randomizeMines() {
     return true;
   }
 }
+
+// Function to play Wilhelm Scream if bomb is clicked on
+function checkForBomb() {
+
+  // Set the HTML audio element as the variable 'audio'
+  var audio = document.getElementById("wilhelm");
+
+  // if the particular cell that is clicked on is a mine,
+  // audio.play();
+
+  // The below logic is wrong!!!!
+  // This is looping through the whole board, and if there is a mine anywhere, playing the sound
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine === true) {
+      audio.play();
+    }
+  }
+}
+
 
 // Define this function to look for a win condition:
 

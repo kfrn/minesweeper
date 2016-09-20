@@ -19,11 +19,11 @@ var board = {
 function startGame () {
 
   // Get a number for the width/height of the board
-  var boardWidth = prompt("Set your board size! Enter a number between 3 and 6", "your number here");
+  var boardWidth = prompt("Set your board size! Enter a number between 3 and 6");
 
-  // Re-prompt if a different number is provided
-  if (boardWidth < 3 || boardWidth > 6) {
-    boardWidth = prompt("Try a number between 3 and 6", "3, 4, 5, or 6");
+  // Re-prompt if a different number is provided, or nothing at all
+  if (boardWidth < 3 || boardWidth > 6 || boardWidth === null) {
+    boardWidth = prompt("Try a number between 3 and 6");
   }
 
   // Call function to create board

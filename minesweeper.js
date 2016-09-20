@@ -113,19 +113,15 @@ function checkForBomb(evt) {
 // Look for a win condition:
 function checkForWin () {
 
-  // Check to see if any mines are unmarked. If so, game is not won
   for (var i = 0; i < board.cells.length; i++) {
+    // Check to see if any mines are unmarked. If so, game is not won
     if (board.cells[i].isMine === true && board.cells[i].isMarked !== true) {
       return;
     }
-  }
-
-  // Check to see if any cells are still hidden
-  // Note that marked mines are still counted as hidden! Since we've accounted for the mines above, just count them out entirely.
-  for (var i = 0; i < board.cells.length; i++) {
+    // Check to see if any cells (that aren't mines) are still hidden
     if (board.cells[i].isMine === false && board.cells[i].hidden === true) {
       return;
-      }
+    }
   }
 
   // You can use this function call to declare a winner (once you've detected that they've won, that is)

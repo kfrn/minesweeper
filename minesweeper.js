@@ -94,29 +94,23 @@ function randomizeMines() {
 }
 
 // Function to play Wilhelm Scream if bomb is clicked on
-function checkForBomb() {
+function checkForBomb(evt) {
+  // Objective: if the particular cell that is clicked on is a mine,
+  // audio.play();
+
+  var idx = getCellIndex(getRow(evt.target), getCol(evt.target))
+  var cell = board.cells[idx]
 
   // Set the HTML audio element as the variable 'audio'
   var audio = document.getElementById("wilhelm");
 
-  // if the particular cell that is clicked on is a mine,
-  // audio.play();
-
-  // The below logic is wrong!!!!
-  // This is looping through the whole board, and if there is a mine anywhere, playing the sound
-  for (var i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine === true) {
-      audio.play();
-    }
+  if (cell.isMine === true) {
+    audio.play();
   }
 }
 
 
-// Define this function to look for a win condition:
-
-// 1. Are all of the cells that are NOT mines visible?
-// 2. Are all of the mines marked?
-
+// Look for a win condition:
 function checkForWin () {
 
   // Check to see if any mines are unmarked. If so, game is not won

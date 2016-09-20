@@ -128,8 +128,12 @@ function checkForWin () {
       }
   }
 
-  // You can use this function call to declare a winner (once you've detected that they've won, that is
+  // You can use this function call to declare a winner (once you've detected that they've won, that is)
   lib.displayMessage('You win!');
+
+  // Also, play 'ta-da' sound effect
+  var audio = document.getElementById("ta-da");
+  audio.play();
 }
 
 

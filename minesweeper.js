@@ -21,10 +21,10 @@ function startGame () {
   // Get a number for the width/height of the board
   var boardWidth = prompt("Set your board size! Enter a number between 3 and 6");
 
-  // Re-prompt if a different number is provided, or nothing at all
-  while (boardWidth < 3 || boardWidth > 6 || boardWidth === null || boardWidth === NaN) {
-    boardWidth = prompt("Try a number between 3 and 6");
-  };
+  // Re-prompt if a something other than 3, 4, 5, or 6 is provided
+  while (boardWidth !== /\d*/ || (boardWidth < 3 || boardWidth > 6) ) {
+    boardWidth = prompt("No, a number between 3 and 6!");
+  }
 
   // Call function to create board
   createboard(boardWidth, boardWidth);
